@@ -200,11 +200,6 @@
     const allDigits = (day + month + year).split('').map(Number);
     const sumAll = allDigits.reduce((acc, curr) => acc + curr, 0);
     const destinyNumber = reduceToSingleDigit(sumAll);
-    // 3. Supportive Numbers: Digits from Day, Month, Last 2 year digits (exclude 0, BN, DN)
-    const relevantDigits = (day + month + year.slice(-2)).replace(/0/g, '').split('');
-    const sn = [..new Set(relevantDigits)]
-      .map(Number)
-    .filter(digit => digit !== bn && digit !== dn)'
     const
     // Update Output
     document.getElementById("birthNum").textContent = birthNumber;
@@ -212,8 +207,6 @@
 
     document.getElementById("destinyNum").textContent = destinyNumber;
     document.getElementById("destinyStep").textContent = `Total Sum: ${sumAll} → ${destinyNumber}`;
-    document.getElementById("supportiveNum").textContent = sn.length ? sn.join(', ') : 'None';
-    document.getElementById("supportiveStep").textContent = `Digits from DOB (excl. 0, century, BN, DN) → ${sn.join(', ')}`;
     const rulingPlanet = planetMap[birthNumber];
     document.getElementById("planetDetails").innerHTML = `
       <strong>Ruling Planet:</strong> ${rulingPlanet.planet}<br>
